@@ -4,10 +4,13 @@ const client = new Client({
     host: "localhost",
     user: "postgres",
     port: 5432,
-    password: "password",
+    password: "PASSWORD",
     database: "GroupProject"
-})
+});
 
+module.exports = client;
+
+/*
 client.connect();
 
 client.query(`SELECT * FROM Customer ORDER BY username ASC`, (err, res)=>{
@@ -19,3 +22,4 @@ client.query(`SELECT * FROM Customer ORDER BY username ASC`, (err, res)=>{
     }
     client.end;
 })
+*/

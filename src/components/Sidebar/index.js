@@ -1,6 +1,7 @@
 import React from "react"
 import {SidebarContainer, Icon, CloseIcon, SidebarMenu, SidebarLink, SidebarRoute, SideBtnWrap} from "./SidebarElements"
 
+
 const Sidebar = ({isOpen, toggle}) => {
     return (
         <div>
@@ -14,7 +15,7 @@ const Sidebar = ({isOpen, toggle}) => {
 
                 <SidebarMenu>
 
-                    <SidebarLink to="/">
+                    <SidebarLink to="/404">
                         Menu
                     </SidebarLink>
 
@@ -22,7 +23,7 @@ const Sidebar = ({isOpen, toggle}) => {
                         Cart
                     </SidebarLink>
 
-                    <SidebarLink to="/">
+                    <SidebarLink to="/Register">
                         Login
                     </SidebarLink>
 
@@ -36,9 +37,9 @@ const Sidebar = ({isOpen, toggle}) => {
 
                 </SideBtnWrap>
 
+
             </SidebarContainer>
         </div>
     )
 }
-
 export default Sidebar

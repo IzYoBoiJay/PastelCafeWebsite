@@ -20,7 +20,13 @@ const Products = ({ products }) => {
                                 <ProductDescription>{product.desc}</ProductDescription>
                                 <ProductPrice>{product.price}</ProductPrice>
 
-                                <ProductBtn>{product.btn}</ProductBtn>
+                                <ProductBtn onClick={(Print) =>{
+                                    
+                                    alert('BUTTON TEST');
+
+                                }}>
+                                    {product.btn}
+                                </ProductBtn>
 
                             </ProductInfo>
 

@@ -1,24 +1,30 @@
-import React from "react";
-import Hero from "./components/Hero";
-import Products from "./components/Products";
+import React, { Component } from "react";
 
-import { BrowserRouter as Router } from "react-router-dom";
-import { GlobalStyle } from "./globalStyles";
-import { productItem } from "./components/Products/data"
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
+//Pages
+import MainPage from "./pages/MainPage";
+import PageNotFound from "./pages/404";
+import Register from "./pages/Register";
 
-function App() {
+class App extends Component {
+
+  render() {
   return (
     <Router>
 
-      <GlobalStyle />
-      
-      <Hero />
+      <Switch>
 
-      <Products products={productItem}/>
+        <Route exact path="/" component={MainPage}/>
+        <Route exact path="/Register" component={Register}/>
+        <Route exact path="/404" component={PageNotFound}/>
+        <Redirect to="/404"/>
+ 
+      </Switch>
 
     </Router>
   );
+  }
 }
 
 export default App;

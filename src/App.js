@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 //Pages
-import MainPage from "./pages/MainPage";
-import PageNotFound from "./pages/404";
-import Register from "./pages/Register";
+import MainPage from "./Pages/MainPage";
+import PageNotFound from "./Pages/404";
+import Register from "./Pages/Register";
 
 class App extends Component {
 

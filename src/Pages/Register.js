@@ -32,7 +32,7 @@ const Register = () => {
                 </RegLabel>
 
                 <RegLabel/>
-                <RegInput type="submit"/>
+                <RegInput type="submit" value="Submit"/>
 
             </RegForm>
 

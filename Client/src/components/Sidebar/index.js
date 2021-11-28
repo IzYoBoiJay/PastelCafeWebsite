@@ -35,7 +35,7 @@ const Sidebar = ({isOpen, toggle}) => {
 
                 <SideBtnWrap>
 
-                    <SidebarRoute to="/">
+                    <SidebarRoute to="/Menu">
                         Order Now!
                     </SidebarRoute>
 

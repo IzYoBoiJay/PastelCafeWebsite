@@ -1,6 +1,6 @@
 import pokemonEspresso from "../../images/espresso.jpg";
 import icedMocha from "../../images/mocha.jpg";
-import Cheese from "../../images/jcheesecake.jpg"
+import Cheese from "../../images/jcheesecake.jpg";
 
 
 export const productItem = [
@@ -30,3 +30,5 @@ export const productItem = [
         btn: "Add to Cart"
     }
 ]
+
+export default productItem;

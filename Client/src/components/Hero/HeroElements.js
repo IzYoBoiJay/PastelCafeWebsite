@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import imageBackground from "../../images/coffeeanimalart.jpg";
+import { Link } from "react-router-dom";
 
 export const HeroContainer = styled.div`
 
@@ -59,23 +60,28 @@ export const HeroP = styled.p`
 
 `
 
-export const HeroBtn = styled.button`
+export const HeroBtn = styled(Link)`
 
-    font-size: 1.4rem;
-    padding: 1rem 4rem;
+
+    background: #E3D5E8;
+    white-space: nowrap;
+    padding: 16px 64px;
+    color: #000;
+    font-size: 16px;
+    outline: none;
     border: none;
     border-radius: 30px;
-    background: #E3D5E8;
-    color: #000;
+    cursor: pointer;
     transition: 0.2s ease-in-out;
+    text-decoration: none;
 
     &:hover {
 
         background: #fff;
         transition: 0.2s ease-in-out;
         cursor: pointer;
-        color: #000
+        color: #000;
 
     }
 
-`
+`;

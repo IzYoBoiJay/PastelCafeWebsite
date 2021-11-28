@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Route } from 'react-router'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
 
@@ -33,8 +34,10 @@ const Hero = () => {
                         Feel hot like an espresso and cool like an iced mocha
                     </HeroP>
 
-                    <HeroBtn>
+                    <HeroBtn to="Menu">
+
                         Order Now!
+
                     </HeroBtn>
 
                 </HeroItems>

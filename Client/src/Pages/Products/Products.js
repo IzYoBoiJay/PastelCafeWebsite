@@ -1,7 +1,8 @@
 import React from "react"
 import { ProductsContainer, ProductsHeading, ProductWrapper, ProductDisplay, ProductImage, ProductInfo, ProductName, ProductDescription, ProductPrice, ProductBtn } from "./ProductsElements"
+import products from "./data"
 
-const Products = ({ products }) => {
+const Products = () => {
     return (
         <ProductsContainer>
 

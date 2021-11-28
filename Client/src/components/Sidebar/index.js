@@ -19,12 +19,16 @@ const Sidebar = ({isOpen, toggle}) => {
                         Menu
                     </SidebarLink>
 
-                    <SidebarLink to="/">
+                    <SidebarLink to="/Cart">
                         Cart
                     </SidebarLink>
 
-                    <SidebarLink to="/Register">
+                    <SidebarLink to="/">
                         Login
+                    </SidebarLink>
+
+                    <SidebarLink to="/Register">
+                        Register
                     </SidebarLink>
 
                 </SidebarMenu>

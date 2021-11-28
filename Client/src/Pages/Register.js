@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { useState } from "react";
 import { RegH1, RegP, RegLabel, RegInput, RegForm } from "./RegisterElements";
 {/*import client from "../db";*/}
@@ -7,6 +7,10 @@ const Register = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [address, setAddress] = useState("");
+  const [fname, setfName] = useState("");
+  const [lname, setlName] = useState("");
 
   const handleSubmit = async e => {
 
@@ -21,7 +25,7 @@ const Register = () => {
           password
       );
 
-      const body = {username, password};
+      const body = {username, password, fname, lname, phoneNum, address};
 
       const response = await fetch("http://localhost:5000/register", {
 
@@ -48,6 +52,26 @@ const Register = () => {
         <RegP>Fill in the form to create an account.</RegP>
 
         <RegForm onSubmit={handleSubmit}>
+        <RegLabel>
+            Enter your first name:
+            <RegInput
+              name="first name"
+              type="text"
+              email = {fname}
+              onChange={e => setfName(e.target.value)}
+            />
+          </RegLabel>
+
+          <RegLabel>
+            Enter your last name:
+            <RegInput
+              name="Last name"
+              type="text"
+              email = {lname}
+              onChange={e => setlName(e.target.value)}
+            />
+          </RegLabel>
+
           <RegLabel>
             Enter a username:
             <RegInput
@@ -65,6 +89,26 @@ const Register = () => {
               type="text"
               password={password}
               onChange={e => setPassword(e.target.value)}
+            />
+          </RegLabel>
+
+          <RegLabel>
+            Enter your phone number:
+            <RegInput
+              name="phone number"
+              type="text"
+              phoneNum = {phoneNum}
+              onChange={e => setPhoneNum(e.target.value)}
+            />
+          </RegLabel>
+
+          <RegLabel>
+            Enter your Address:
+            <RegInput
+              name="address"
+              type="text"
+              email = {address}
+              onChange={e => setAddress(e.target.value)}
             />
           </RegLabel>
 

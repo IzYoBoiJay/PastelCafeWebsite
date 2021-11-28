@@ -26,7 +26,7 @@ export const HeroItems = styled.div`
     justify-content: center;
     align-items: flex-start;
     height: 100vh;
-    max-height 100%;
+    max-height: 100%;
     padding: 0 2rem;
     width: 650px;
     color: #E3D5E8;

@@ -22,7 +22,7 @@ const Products = ({ products }) => {
 
                                 <ProductBtn onClick={(Print) =>{
                                     
-                                    alert('BUTTON TEST');
+                                    alert(index);
 
                                 }}>
                                     {product.btn}

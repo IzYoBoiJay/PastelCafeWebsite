@@ -1,9 +1,25 @@
-import React from "react"
+import React, {useState} from "react"
 import { ProductsContainer, ProductsHeading, ProductWrapper, ProductDisplay, ProductImage, ProductInfo, ProductName, ProductDescription, ProductPrice, ProductBtn } from "./ProductsElements"
 import products from "./data"
 
+import Navbar from "../../components/Navbar";
+import Sidebar from "../../components/Sidebar";
+
 const Products = () => {
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    const toggle = () => {
+  
+        setIsOpen(!isOpen)
+  
+    }
+
     return (
+        <div>
+            <Navbar toggle={toggle}/>
+            <Sidebar isOpen={isOpen} toggle={toggle} />
+        
         <ProductsContainer>
 
             <ProductsHeading>Taste the Aroma</ProductsHeading>
@@ -37,6 +53,8 @@ const Products = () => {
             </ProductWrapper>
 
         </ProductsContainer>
+
+    </div>
     );
 };
 

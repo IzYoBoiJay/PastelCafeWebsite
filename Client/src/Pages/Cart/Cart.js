@@ -1,8 +1,19 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { CartH1 } from "./CartElements";
 
+import Navbar from "../../components/Navbar";
+import Sidebar from "../../components/Sidebar";
+
 const Cart = () => {
     const [menuItems, setMenuItems] = useState([]);
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    const toggle = () => {
+  
+        setIsOpen(!isOpen)
+  
+    }
 
     const getCart = async () => {
         try {
@@ -24,6 +35,10 @@ const Cart = () => {
 
     return ( 
         <div>
+
+        <Navbar toggle={toggle}/>
+        <Sidebar isOpen={isOpen} toggle={toggle} />
+
             <CartH1> Your Cart </CartH1>
 
 

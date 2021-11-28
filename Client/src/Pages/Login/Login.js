@@ -2,10 +2,21 @@ import React, { Fragment } from "react";
 import { useState } from "react";
 import { RegH1, RegP, RegLabel, RegInput, RegForm } from "./LoginElements";
 
+import Navbar from "../../components/Navbar";
+import Sidebar from "../../components/Sidebar";
+
+
 const Register = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = () => {
+
+      setIsOpen(!isOpen)
+
+  }
 
 
   const handleSubmit = async e => {
@@ -44,6 +55,10 @@ const Register = () => {
 
     return (
       <div>
+        
+        <Navbar toggle={toggle}/>
+        <Sidebar isOpen={isOpen} toggle={toggle} />
+
         <RegH1>Welcome back Mocha!</RegH1>
         <RegP>Fill in the form to login.</RegP>
 

@@ -16,15 +16,34 @@ app.use(express.json()) //request.body
 
 //Create user information app.post() to add data
 //async provides await
-app.post("/register", async(request, response) => {
+app.post("/Register", async(request, response) => {
 
     try {
 
-        const {username, password} = request.body;
+        const {username, password, fname, lname, phoneNum, address} = request.body;
 
-        const newUser = await pool.query("INSERT INTO customer (username, password) VALUES($1, $2) RETURNING *", [username, password]);
+        const newUser = await pool.query("INSERT INTO customer (username, password, lname, fname, phonenum, address) VALUES($1, $2, $3, $4, $5, $6) RETURNING *", 
+        [username, password, lname, fname, phoneNum, address]);
 
         response.json(newUser.rows[0]);
+
+    } catch (err) {
+
+        console.error(err.message);
+
+    }
+
+})
+
+
+app.get("/Cart/:customer", async(request, response) => {
+
+    try {
+
+        const {customer} = request.params;
+
+        const cart = await pool.query("SELECT * FROM ordercontainsitem WHERE customer = $1", [customer]);
+        response.json(cart.rows[0]);
 
     } catch (err) {
 

@@ -6,7 +6,7 @@ const Cart = () => {
 
     const getCart = async () => {
         try {
-            const response = await fetch("http://localhost:5000/todos");
+            const response = await fetch("http://localhost:5000/Cart/:customer");
             const jsonData = await response.json();
 
             setMenuItems(jsonData);

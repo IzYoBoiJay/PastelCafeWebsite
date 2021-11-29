@@ -17,12 +17,11 @@ const Cart = () => {
 
     const getCart = async () => {
         try {
-            const response = await fetch("http://localhost:5000/Cart/:customer");
+            const response = await fetch("http://localhost:5000/Cart");
             const jsonData = await response.json();
 
             setMenuItems(jsonData);
-            
-            console.log(Cart);
+
         } catch (err) {
             console.error(err.message);
         }
@@ -32,6 +31,7 @@ const Cart = () => {
         getCart();
     }, []);
 
+    console.log(menuItems);
 
     return ( 
         <div>
@@ -51,6 +51,12 @@ const Cart = () => {
             </tr>
             </thead>
             <tbody>
+                {menuItems.map(menuItem => (
+            <tr key={menuItem.orderid}>
+              <td>"{menuItem.foodid}"</td>
+              <td>"{menuItem.price}"</td>
+            </tr>
+          ))}
             </tbody>
         </table></Fragment>
       </div>

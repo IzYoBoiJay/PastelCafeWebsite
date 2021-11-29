@@ -11,6 +11,7 @@ import Login from "./Pages/Login/Login";
 
 import Cart from "./Pages/Cart/Cart";
 import Products from "./Pages/Products/Products";
+import Checkout from "./Pages/Checkout/Checkout";
 
 class App extends Component {
 
@@ -25,6 +26,7 @@ class App extends Component {
         <Route exact path="/Login" component={Login}/>
         <Route exact path="/Cart" component={Cart}/>
         <Route exact path="/Menu"component={Products}/>
+        <Route exact path="/Checkout"component={Checkout}/>
         <Route exact path="/404" component={PageNotFound}/>
         <Redirect to="/404"/>
  

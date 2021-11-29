@@ -31,6 +31,8 @@ const Sidebar = ({isOpen, toggle}) => {
                         Register
                     </SidebarLink>
 
+                    
+
                 </SidebarMenu>
 
                 <SideBtnWrap>
@@ -41,7 +43,10 @@ const Sidebar = ({isOpen, toggle}) => {
 
                 </SideBtnWrap>
 
-
+                    <SidebarLink to="/Checkout">
+                        Checkout
+                    </SidebarLink>
+                    
             </SidebarContainer>
         </div>
     )

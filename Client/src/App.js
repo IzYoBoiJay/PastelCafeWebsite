@@ -11,6 +11,7 @@ import Login from "./Pages/Login/Login";
 
 import Cart from "./Pages/Cart/Cart";
 import Products from "./Pages/Products/Products";
+import Checkout from "./Pages/Checkout/Checkout";
 
 import useToken from "./components/App/useToken";
 
@@ -45,6 +46,7 @@ function App() {
         <Route exact path="/" component={MainPage}/>
         <Route exact path="/Cart" component={Cart}/>
         <Route exact path="/Menu"component={Products}/>
+        <Route exact path="/Checkout"component={Checkout}/>
         <Route exact path="/404" component={PageNotFound}/>
         <Redirect to="/"/>
  

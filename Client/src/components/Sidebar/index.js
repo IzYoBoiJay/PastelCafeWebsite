@@ -33,9 +33,12 @@ const Sidebar = ({isOpen, toggle}) => {
 
                 </SideBtnWrap>
 
-
+                    <SidebarLink to="/Checkout">
+                        Checkout
+                    </SidebarLink>
+                    
             </SidebarContainer>
         </div>
     )
 }
-export default Sidebar
+export default Sidebar;

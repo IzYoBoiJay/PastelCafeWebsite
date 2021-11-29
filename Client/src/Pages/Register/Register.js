@@ -6,13 +6,6 @@ import Sidebar from "../../components/Sidebar";
 
 const Register = () => {
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [phoneNum, setPhoneNum] = useState("");
-  const [address, setAddress] = useState("");
-  const [fname, setfName] = useState("");
-  const [lname, setlName] = useState("");
-
   const [isOpen, setIsOpen] = useState(false)
 
   const toggle = () => {
@@ -20,6 +13,13 @@ const Register = () => {
       setIsOpen(!isOpen)
 
   }
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [phoneNum, setPhoneNum] = useState("");
+  const [address, setAddress] = useState("");
+  const [fname, setfName] = useState("");
+  const [lname, setlName] = useState("");
 
   const handleSubmit = async e => {
 
@@ -45,6 +45,8 @@ const Register = () => {
       });
 
       console.log(response);
+
+      ('#RegForm')[0].reset();
       
     } catch (error) {
 
@@ -64,7 +66,9 @@ const Register = () => {
         <RegH1>Register to become part of the Mochas</RegH1>
         <RegP>Fill in the form to create an account.</RegP>
 
-        <RegForm onSubmit={handleSubmit}>
+        <RegForm onSubmit={
+          handleSubmit
+        }>
         <RegLabel>
             Enter your first name:
             <RegInput

@@ -36,14 +36,16 @@ app.post("/Register", async(request, response) => {
 })
 
 
-app.get("/Cart/:customer", async(request, response) => {
+app.post("/Menu", async(request, response) => {
 
     try {
 
-        const {customer} = request.params;
+        const {nameIn} = request.body;
 
-        const cart = await pool.query("SELECT * FROM ordercontainsitem WHERE customer = $1", [customer]);
-        response.json(cart.rows[0]);
+        const newIn = await pool.query("INSERT INTO transaction (name) VALUES($1) RETURNING *", 
+        [nameIn]);
+
+        response.json(newIn.rows[0]);
 
     } catch (err) {
 
@@ -53,6 +55,17 @@ app.get("/Cart/:customer", async(request, response) => {
 
 })
 
+app.get("/Cart", async(request, response) => {
+
+    try {
+        response.set('Access-Control-Allow-Origin', '*');
+        const allItems = await pool.query("SELECT * FROM menuItem M WHERE EXISTS (SELECT * FROM orderContainsItems WHERE orderNum = 1 AND foodId = M.foodId)");
+        response.json(allItems.rows);
+    } catch (err) {
+        console.error(err.message);
+    }
+
+})
 
 app.listen(5000, () => {
 

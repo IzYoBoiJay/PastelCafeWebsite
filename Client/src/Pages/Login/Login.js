@@ -1,12 +1,57 @@
-import React, { Fragment } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { RegH1, RegP, RegLabel, RegInput, RegForm } from "./LoginElements";
 
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
+var fetchSuccess = false;
 
-const Register = () => {
+async function loginValidate(loginInfo) {
+
+  return fetch('http://localhost:5000/LoginValidate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(loginInfo)
+  })
+  .then(response => {
+    console.log(response, "Response");
+
+    if(response.status == 401) {
+      localStorage.removeItem("token");
+
+    }
+
+    return response.json();
+
+  })
+  .then(data => {
+    console.log(data, "Data")
+
+    if (data) {
+
+      fetchSuccess = true;
+
+    }
+  });
+}
+
+
+async function loginSuccess(loginInfo) {
+  return fetch('http://localhost:5000/LoginSuccess', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(loginInfo)
+  })
+    .then(data => data.json())
+ }
+
+export default function Login ( {setToken} ){
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -23,6 +68,7 @@ const Register = () => {
 
     e.preventDefault();
 
+
     try {
 
       alert(
@@ -32,17 +78,23 @@ const Register = () => {
           password
       );
 
-      const body = {username, password};
+      const authenticate = await loginValidate({username, password});
 
-      const response = await fetch("http://localhost:5000/login", {
+      console.log(authenticate);
 
-        method: "POST",
-        headers: { "Content-Type": "application/json"},
-        body: JSON.stringify(body)
+      if(fetchSuccess) {
 
-      });
+        alert("Login success!");
+        const token = await loginSuccess({username, password});
 
-      console.log(response);
+        setToken(token);
+        console.log(token);
+  
+      }
+      else{
+  
+        alert("No match for login credentials found");
+      }
       
     } catch (error) {
 
@@ -92,4 +144,6 @@ const Register = () => {
     );
 }
 
-export default Register;
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired
+};

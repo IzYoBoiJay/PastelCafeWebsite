@@ -33,7 +33,33 @@ app.post("/Register", async(request, response) => {
 
     }
 
-})
+});
+
+app.use('/LoginValidate', async(request, response) => {
+
+    try {
+
+    const {username, password} = request.body;
+
+    const loginMatch = await pool.query("SELECT EXISTS(SELECT * FROM customer WHERE username = $1 AND password = $2)",
+    [username, password]);
+
+    response.json(loginMatch.rows[0].exists);
+
+    
+    } catch (err) {
+
+        console.error(err.message)
+
+    }
+
+});
+
+app.use('/LoginSuccess', (request, response) => {
+    response.send({
+      token: request.body
+    });
+  });
 
 
 app.get("/Cart/:customer", async(request, response) => {
@@ -42,7 +68,7 @@ app.get("/Cart/:customer", async(request, response) => {
 
         const {customer} = request.params;
 
-        const cart = await pool.query("SELECT * FROM ordercontainsitem WHERE customer = $1", [customer]);
+        const cart = await pool.query("SELECT * FROM ordercontainsitems WHERE customer = $1", [customer]);
         response.json(cart.rows[0]);
 
     } catch (err) {

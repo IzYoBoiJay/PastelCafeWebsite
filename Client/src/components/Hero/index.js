@@ -5,7 +5,11 @@ import Sidebar from '../Sidebar'
 
 import { HeroContainer, HeroContent, HeroItems, HeroH1, HeroP, HeroBtn } from "./HeroElements"
 
+import useToken from '../App/useToken'
+
 const Hero = () => {
+
+    const { token, setToken} = useToken();
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -25,6 +29,8 @@ const Hero = () => {
             <HeroContent>
 
                 <HeroItems>
+
+                    <HeroH1>Welcome back {token.username} </HeroH1>
 
                     <HeroH1>
                         Mo Espresso, Less Depresso

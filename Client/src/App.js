@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
@@ -12,27 +12,63 @@ import Login from "./Pages/Login/Login";
 import Cart from "./Pages/Cart/Cart";
 import Products from "./Pages/Products/Products";
 
-class App extends Component {
+import useToken from "./components/App/useToken";
 
-  render() {
+
+function App() {
+
+  const { token, setToken} = useToken();
+
+  if(!token) {
+
+    return (
+      <Router>
+
+          <Switch>
+
+            <Route exact path="/Register" component={Register}/>
+            <Route exact path="/Login" render={ () => <Login setToken={setToken} />} />
+            <Redirect to="/Login"/>
+
+          </Switch>
+
+      </Router>
+    );
+
+  } else if(token) {
+
   return (
     <Router>
 
       <Switch>
 
         <Route exact path="/" component={MainPage}/>
-        <Route exact path="/Register" component={Register}/>
-        <Route exact path="/Login" component={Login}/>
         <Route exact path="/Cart" component={Cart}/>
         <Route exact path="/Menu"component={Products}/>
         <Route exact path="/404" component={PageNotFound}/>
-        <Redirect to="/404"/>
+        <Redirect to="/"/>
  
       </Switch>
 
     </Router>
   );
+
+  } else {
+
+    <Router>
+
+    <Switch>
+
+      <Route exact path="/" component={MainPage}/>
+      <Route exact path="/404" component={PageNotFound}/>
+      <Redirect to="/404"/>
+
+    </Switch>
+
+  </Router>
+
   }
+
 }
 
 export default App;

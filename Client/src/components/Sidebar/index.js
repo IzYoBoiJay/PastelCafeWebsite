@@ -23,14 +23,6 @@ const Sidebar = ({isOpen, toggle}) => {
                         Cart
                     </SidebarLink>
 
-                    <SidebarLink to="/Login">
-                        Login
-                    </SidebarLink>
-
-                    <SidebarLink to="/Register">
-                        Register
-                    </SidebarLink>
-
                 </SidebarMenu>
 
                 <SideBtnWrap>

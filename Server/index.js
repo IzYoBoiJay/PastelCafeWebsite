@@ -61,8 +61,8 @@ app.use('/LoginSuccess', (request, response) => {
   });
 
 
-app.get("/Cart", async(request, response) => {
-
+  app.get("/Cart", async(request, response) => {
+  
     try {
         response.set('Access-Control-Allow-Origin', '*');
         const cart = await pool.query("SELECT * FROM menuItem M WHERE EXISTS (SELECT * FROM orderContainsItems WHERE orderNum = 1 AND foodId = M.foodId)");
@@ -82,8 +82,8 @@ app.get("/total", async(request, response) => {
 
         response.set('Access-Control-Allow-Origin', '*');
 
-        const cart = await pool.query("SELECT SUM(price) FROM ordercontainsitems WHERE orderNum = 1 GROUP BY SUM(price)");
-        response.json(cart.rows[0]);
+        const total = await pool.query("SELECT SUM(price) FROM menuItem M WHERE EXISTS (SELECT * FROM orderContainsItems WHERE orderNum = 1 AND foodId = M.foodId)");
+        response.json(total.rows[0].sum);
 
     } catch (err) {
 

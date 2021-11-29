@@ -94,6 +94,25 @@ app.get("/total", async(request, response) => {
 
 })
 
+app.post("/Menu", async(request, response) => {
+
+    try {
+
+        const {nameIn} = request.body;
+
+        const newIn = await pool.query("INSERT INTO transaction (name) VALUES($1) RETURNING *", 
+        [nameIn]);
+
+        response.json(newIn.rows[0]);
+
+    } catch (err) {
+
+        console.error(err.message);
+
+    }
+
+})
+
 
 app.listen(5000, () => {
 

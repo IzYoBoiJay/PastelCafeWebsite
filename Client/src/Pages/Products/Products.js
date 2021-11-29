@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import { ProductsContainer, ProductsHeading, ProductWrapper, ProductDisplay, ProductImage, ProductInfo, ProductName, ProductDescription, ProductPrice, ProductBtn } from "./ProductsElements"
-import products from "./data"
+import products, { productItem } from "./data"
 
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
@@ -15,8 +15,39 @@ const Products = () => {
   
     }
 
+    const[nameIn, setNameIn] = useState("");
+
+    const cart = async () => {
+
+    try {
+
+      alert(
+          "Your thing: " +
+          nameIn
+      );
+
+      const body = {nameIn};
+
+      const response = await fetch("http://localhost:5000/menu", {
+
+        method: "POST",
+        headers: { "Content-Type": "application/json"},
+        body: JSON.stringify(body)
+
+      });
+
+      console.log(response);
+      
+    } catch (error) {
+
+      console.log(error.message);
+      
+    }
+
+  }
+
     return (
-        <div>
+        <div id = "Product">
             <Navbar toggle={toggle}/>
             <Sidebar isOpen={isOpen} toggle={toggle} />
         
@@ -37,13 +68,11 @@ const Products = () => {
                                 <ProductDescription>{product.desc}</ProductDescription>
                                 <ProductPrice>{product.price}</ProductPrice>
 
-                                <ProductBtn onClick={(Print) =>{
-                                    
-                                    alert(index);
-
-                                }}>
+                                <button onClick={() =>{
+                                    setNameIn(product.name);
+                                    cart();}}>
                                     {product.btn}
-                                </ProductBtn>
+                                </button>
 
                             </ProductInfo>
 

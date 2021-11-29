@@ -4,6 +4,7 @@ const cors = require("cors");
 
 //Allows queries to be used with pgSQL
 const pool = require("./db");
+const { request, response } = require("express");
 
 //Middleware
 app.use(cors());
@@ -65,7 +66,7 @@ app.use('/LoginSuccess', (request, response) => {
   
     try {
         response.set('Access-Control-Allow-Origin', '*');
-        const cart = await pool.query("SELECT * FROM menuItem M WHERE EXISTS (SELECT * FROM orderContainsItems WHERE orderNum = 1 AND foodId = M.foodId)");
+        const cart = await pool.query("SELECT * FROM menuItem M WHERE EXISTS (SELECT * FROM orderContainsItems X WHERE orderNum = 1 AND foodId = M.foodId AND EXISTS (SELECT * FROM ticket T WHERE ifcomplete = False))");
         response.json(cart.rows);
 
     } catch (err) {
@@ -82,7 +83,7 @@ app.get("/total", async(request, response) => {
 
         response.set('Access-Control-Allow-Origin', '*');
 
-        const total = await pool.query("SELECT SUM(price) FROM menuItem M WHERE EXISTS (SELECT * FROM orderContainsItems WHERE orderNum = 1 AND foodId = M.foodId)");
+        const total = await pool.query("SELECT SUM(price) FROM menuItem M WHERE EXISTS (SELECT * FROM orderContainsItems X WHERE orderNum = 1 AND foodId = M.foodId AND EXISTS (SELECT * FROM ticket T WHERE ifcomplete = False))");
         response.json(total.rows[0].sum);
 
     } catch (err) {
@@ -97,12 +98,11 @@ app.post("/Menu", async(request, response) => {
 
     try {
 
-        const {nameIn} = request.body;
+        const {item} = request.body;
 
-        const newIn = await pool.query("INSERT INTO transaction (name) VALUES($1) RETURNING *", 
-        [nameIn]);
+        const newItem = await pool.query("INSERT INTO orderContainsItems (orderNum, foodId) VALUES(1, $1 + 1) RETURNING *",[item]);
 
-        response.json(newIn.rows[0]);
+        response.json(newItem.rows[0]);
 
     } catch (err) {
 
@@ -113,14 +113,15 @@ app.post("/Menu", async(request, response) => {
 })
 
 
-app.post("/Checkout", async(request, response) => {
+app.post("/Checkout/:user", async(request, response) => {
 
     try {
 
+        const {user} = request.params;
         const {cardNum, gratuity, total} = request.body;
 
-        const newUser = await pool.query("INSERT INTO Transaction (total, gratuity, cardno, customer, ordernum) VALUES($1, $2, $3, 'ashvol', 1) RETURNING *", 
-        [cardNum, gratuity, total]);
+        const newUser = await pool.query("INSERT INTO Transaction (total, gratuity, cardno, customer, ordernum) VALUES($1, $2, $3, $4, 1) RETURNING *", 
+        [total, gratuity, cardNum, user]);
 
         response.json(newUser.rows[0]);
 
@@ -130,6 +131,34 @@ app.post("/Checkout", async(request, response) => {
     }
 
 });
+
+
+app.post("/OrderNow", async(request, response) => {
+
+    try {
+
+        const createTicket = await pool.query("INSERT INTO Ticket (customer, ifComplete) VALUES('ashvol', false) RETURNING *");
+
+        response.json(createTicket.rows[0]);
+
+    } catch (err) {
+
+        console.error(err.message);
+    }
+
+})
+
+
+app.delete("/deleteOrder", async(request, response) => {
+
+    try {
+        const deleteItems = await pool.query("DELETE FROM OrderContainsItems X WHERE X.orderNum = 1");
+        response.json("Order was cancelled");
+    } catch (err) {
+        console.error(err.message);
+    }
+
+})
 
 
 app.listen(5000, () => {

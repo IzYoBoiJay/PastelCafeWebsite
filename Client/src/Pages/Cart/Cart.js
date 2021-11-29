@@ -4,6 +4,8 @@ import { CartBtn, CartH1 } from "./CartElements";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
+import useToken from "../../components/App/useToken";
+
 const Cart = () => {
     const [menuItems, setMenuItems] = useState([]);
 
@@ -15,9 +17,11 @@ const Cart = () => {
   
     }
 
+    const { token, setToken} = useToken();
+
     const getCart = async () => {
         try {
-            const response = await fetch("http://localhost:5000/Cart");
+            const response = await fetch(`http://localhost:5000/Cart`);
             const jsonData = await response.json();
 
             setMenuItems(jsonData);
@@ -36,7 +40,7 @@ const Cart = () => {
 
     const getTotal = async () => {
         try {
-            const response = await fetch("http://localhost:5000/total");
+            const response = await fetch(`http://localhost:5000/total`);
             const jsonData = await response.json();
             
             setTotal(jsonData);
@@ -50,6 +54,19 @@ const Cart = () => {
     useEffect(() => {
         getTotal();
     });
+
+
+    const cancel = async () => {
+        try {
+            const deleteOrder = await fetch(`http://localhost:5000/deleteOrder`, {
+                method: "DELETE"
+            });
+        } catch (err) {
+            console.error(err.message);
+        }
+    };
+
+
 
     return ( 
         <div>
@@ -72,7 +89,7 @@ const Cart = () => {
             <tbody>
                 {menuItems.map(menuItem => (
             <tr key={menuItem.orderid}>
-              <td>{menuItem.foodid}</td>
+              <td>{menuItem.name}</td>
               <td>{menuItem.price}</td>
               <td></td>
             </tr>
@@ -88,7 +105,9 @@ const Cart = () => {
                  Checkout
         </CartBtn>
 
-        <CartBtn to = "CancelOrder">
+        <CartBtn onclick= {() =>{
+                cancel();
+                 }} to = "CancelOrder">
                  Cancel Order
         </CartBtn>
 

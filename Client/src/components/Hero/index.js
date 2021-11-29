@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Route } from 'react-router'
 import Navbar from '../Navbar'
 import Sidebar from '../Sidebar'
@@ -18,6 +18,33 @@ const Hero = () => {
         setIsOpen(!isOpen)
 
     }
+
+
+    const makeTicket = async () => {
+
+
+        try{
+
+            const response = await fetch(`http://localhost:5000/OrderNow/${token.username}`, {
+    
+            method: "POST",
+            headers: { "Content-Type": "application/json"},
+    
+            });
+    
+            console.log(response);
+        
+        } catch (error) {
+    
+            console.log(error.message);
+            
+        }
+
+    }
+
+    useEffect(() => {
+        makeTicket();
+    });
 
     return (
         <HeroContainer>
@@ -40,7 +67,10 @@ const Hero = () => {
                         Feel hot like an espresso and cool like an iced mocha
                     </HeroP>
 
-                    <HeroBtn to="Menu">
+                    <HeroBtn onclick= {() =>{
+                             makeTicket();
+                             }} to="Menu">
+                         
 
                         Order Now!
 

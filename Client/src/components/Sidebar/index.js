@@ -25,14 +25,6 @@ const Sidebar = ({isOpen, toggle}) => {
 
                 </SidebarMenu>
 
-                <SideBtnWrap>
-
-                    <SidebarRoute to="/Menu">
-                        Order Now!
-                    </SidebarRoute>
-
-                </SideBtnWrap>
-
                     <SidebarLink to="/Checkout">
                         Checkout
                     </SidebarLink>

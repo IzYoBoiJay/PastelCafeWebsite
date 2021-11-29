@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, {useState, useEffect} from "react"
 import { ProductsContainer, ProductsHeading, ProductWrapper, ProductDisplay, ProductImage, ProductInfo, ProductName, ProductDescription, ProductPrice, ProductBtn } from "./ProductsElements"
 import products, { productItem } from "./data"
 
@@ -15,26 +15,27 @@ const Products = () => {
   
     }
 
-    const[nameIn, setNameIn] = useState("");
+    const[foodId, setFoodId] = useState(1);
 
     const cart = async () => {
 
-    try {
 
-      alert(
-          "Your thing: " +
-          nameIn
-      );
+        try {
 
-      const body = {nameIn};
+        alert(
+            "Your thing: " +
+            foodId
+        );
 
-      const response = await fetch("http://localhost:5000/menu", {
+        const body = {foodId};
 
-        method: "POST",
-        headers: { "Content-Type": "application/json"},
-        body: JSON.stringify(body)
+        const response = await fetch("http://localhost:5000/Menu", {
 
-      });
+            method: "POST",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify(body)
+
+        });
 
       console.log(response);
       
@@ -68,11 +69,13 @@ const Products = () => {
                                 <ProductDescription>{product.desc}</ProductDescription>
                                 <ProductPrice>{product.price}</ProductPrice>
 
-                                <button onClick={() =>{
-                                    setNameIn(product.name);
-                                    cart();}}>
-                                    {product.btn}
-                                </button>
+                                <ProductBtn onClick= {() =>{
+                                    setFoodId(index + 1);
+                                    cart();
+                                    }}>
+                                        {product.btn}
+                                    
+                                </ProductBtn>
 
                             </ProductInfo>
 

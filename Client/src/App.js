@@ -13,6 +13,7 @@ import Cart from "./Pages/Cart/Cart";
 import Products from "./Pages/Products/Products";
 import Checkout from "./Pages/Checkout/Checkout";
 import ConfirmationPage from "./Pages/ConfirmationPage/ConfirmationPage";
+import CancelOrder from './Pages/CancelOrder/CancelOrder';
 
 import useToken from "./components/App/useToken";
 
@@ -49,6 +50,7 @@ function App() {
         <Route exact path="/Cart" component={Cart}/>
         <Route exact path="/Menu"component={Products}/>
         <Route exact path="/Checkout"component={Checkout}/>
+        <Route exact path="/CancelOrder"component={CancelOrder}/>
         <Route exact path="/ConfirmationPage"component={ConfirmationPage}/>
         <Route exact path="/404" component={PageNotFound}/>
         <Redirect to="/"/>

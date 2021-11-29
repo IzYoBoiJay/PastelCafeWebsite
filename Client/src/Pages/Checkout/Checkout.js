@@ -2,12 +2,16 @@ import React, { Fragment, useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import { RegH1 , RegP, RegLabel, RegInput, RegForm, RegText } from "../Register/RegisterElements";
+import useToken from "../../components/App/useToken";
 import { Redirect } from "react-router";
+
+
 
 const Checkout = () => {
     const [cardNo, setCardNo] = useState("");
-    const [gratuity, setGratuity] = useState("");
+    const [gratuity, setGratuity] = useState(0.0);
     const [isOpen, setIsOpen] = useState(false);
+    const [total, setTotal] = useState(0.0);
 
     const [CheckoutComplete, setCheckoutComplete] = useState(false);
 
@@ -17,17 +21,20 @@ const Checkout = () => {
   
     }
 
+    const { token, setToken} = useToken();
+
     const handleSubmit = async e => {
         
         e.preventDefault();
-//ADD THIS BELOW
+
         setCheckoutComplete(true);
 
         try{
 
-            const body = {cardNo, gratuity};
+            const body = {cardNo, gratuity, total};
+            
 
-            const response = await fetch("http://localhost:5000/Checkout", {
+            const response = await fetch(`http://localhost:5000/Checkout/${token.username}`, {
     
             method: "POST",
             headers: { "Content-Type": "application/json"},
@@ -45,11 +52,11 @@ const Checkout = () => {
 
     }
 
-    const [total, setTotal] = useState(0);
+    
 
     const getTotal = async () => {
         try {
-            const response = await fetch("http://localhost:5000/total");
+            const response = await fetch(`http://localhost:5000/total`);
             const jsonData = await response.json();
             
             console.log(jsonData);
@@ -91,7 +98,7 @@ const Checkout = () => {
                             <RegInput
                             name="Card Number"
                             type="text"
-                            username={cardNo}
+                            cardNo={cardNo}
                             onChange={e => setCardNo(e.target.value)}
                             />
                         </RegLabel>
@@ -101,7 +108,7 @@ const Checkout = () => {
                             <RegInput
                             name="Gratuity"
                             type="text"
-                            password={gratuity}
+                            gratuity={gratuity}
                             onChange={e => setGratuity(e.target.value)}
                             />
                         </RegLabel>

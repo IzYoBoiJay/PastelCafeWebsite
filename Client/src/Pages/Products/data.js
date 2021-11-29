@@ -38,7 +38,7 @@ export const productItem = [
         alt: "Pastry",
         name: "Cheesecake",
         desc: "Jiggly",
-        price: "$20,000.00",
+        price: "$6.99",
         btn: "Add to Cart"
     },
     {

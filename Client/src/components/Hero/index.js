@@ -49,10 +49,6 @@ const Hero = () => {
     return (
         <HeroContainer>
 
-            <Navbar toggle={toggle}/>
-
-            <Sidebar isOpen={isOpen} toggle={toggle} />
-
             <HeroContent>
 
                 <HeroItems>
@@ -71,7 +67,6 @@ const Hero = () => {
                              makeTicket();
                              }} to="Menu">
                          
-
                         Order Now!
 
                     </HeroBtn>

@@ -8,7 +8,7 @@ import { Redirect } from "react-router";
 
 
 const Checkout = () => {
-    const [cardNo, setCardNo] = useState("");
+    const [cardNum, setCardNum] = useState(0);
     const [gratuity, setGratuity] = useState(0.0);
     const [isOpen, setIsOpen] = useState(false);
     const [total, setTotal] = useState(0.0);
@@ -31,7 +31,7 @@ const Checkout = () => {
 
         try{
 
-            const body = {cardNo, gratuity, total};
+            const body = {cardNum, gratuity, total};
             
 
             const response = await fetch(`http://localhost:5000/Checkout/${token.username}`, {
@@ -98,8 +98,8 @@ const Checkout = () => {
                             <RegInput
                             name="Card Number"
                             type="text"
-                            cardNo={cardNo}
-                            onChange={e => setCardNo(e.target.value)}
+                            cardNo={cardNum}
+                            onChange={e => setCardNum(e.target.value)}
                             />
                         </RegLabel>
     

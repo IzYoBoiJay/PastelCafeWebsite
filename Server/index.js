@@ -66,7 +66,7 @@ app.use('/LoginSuccess', (request, response) => {
   
     try {
         response.set('Access-Control-Allow-Origin', '*');
-        const cart = await pool.query("SELECT * FROM menuItem M WHERE EXISTS (SELECT * FROM orderContainsItems X WHERE orderNum = 1 AND foodId = M.foodId AND EXISTS (SELECT * FROM ticket T WHERE ifcomplete = False))");
+        const cart = await pool.query("SELECT * FROM menuItem M WHERE EXISTS (SELECT * FROM orderContainsItems X WHERE orderNum = 1 AND foodId = M.foodId AND EXISTS (SELECT * FROM ticket WHERE ifcomplete = False))");
         response.json(cart.rows);
 
     } catch (err) {
@@ -100,7 +100,7 @@ app.post("/Menu", async(request, response) => {
 
         const {item} = request.body;
 
-        const newItem = await pool.query("INSERT INTO orderContainsItems (orderNum, foodId) VALUES(1, $1 + 1) RETURNING *",[item]);
+        const newItem = await pool.query("INSERT INTO orderContainsItems (orderNum, foodId) VALUES(1, ($1 + 1)) RETURNING *",[item]);
 
         response.json(newItem.rows[0]);
 
@@ -152,7 +152,7 @@ app.post("/OrderNow", async(request, response) => {
 app.delete("/deleteOrder", async(request, response) => {
 
     try {
-        const deleteItems = await pool.query("DELETE FROM OrderContainsItems X WHERE X.orderNum = 1");
+        const deleteItems = await pool.query("DELETE FROM OrderContainsItems WHERE orderNum = 1");
         response.json("Order was cancelled");
     } catch (err) {
         console.error(err.message);

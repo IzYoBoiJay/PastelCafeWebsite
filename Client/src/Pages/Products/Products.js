@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect, ReactDOM} from "react"
 import { ProductsContainer, ProductsHeading, ProductWrapper, ProductDisplay, ProductImage, ProductInfo, ProductName, ProductDescription, ProductPrice, ProductBtn } from "./ProductsElements"
 import products, { productItem } from "./data"
 
@@ -16,6 +16,8 @@ const Products = () => {
     }
 
     const[foodId, setFoodId] = useState(1);
+
+
 
     const cart = async () => {
 
@@ -37,7 +39,9 @@ const Products = () => {
 
         });
 
-      console.log(response);
+        console.log(response);
+
+        setFoodId(1);
       
     } catch (error) {
 
@@ -46,6 +50,8 @@ const Products = () => {
     }
 
   }
+
+
 
     return (
         <div id = "Product">

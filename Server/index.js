@@ -30,7 +30,6 @@ app.post("/Register", async(request, response) => {
     } catch (err) {
 
         console.error(err.message);
-
     }
 
 });
@@ -83,7 +82,7 @@ app.get("/total", async(request, response) => {
 
         response.set('Access-Control-Allow-Origin', '*');
 
-        const cart = await pool.query("SELECT * FROM ordercontainsitems WHERE customer = $1", [customer]);
+        const cart = await pool.query("SELECT SUM(price) FROM ordercontainsitems WHERE orderNum = 1 GROUP BY SUM(price)");
         response.json(cart.rows[0]);
 
     } catch (err) {
@@ -93,6 +92,25 @@ app.get("/total", async(request, response) => {
     }
 
 })
+
+
+app.post("/Checkout", async(request, response) => {
+
+    try {
+
+        const {cardNum, gratuity, total} = request.body;
+
+        const newUser = await pool.query("INSERT INTO Transaction (total, gratuity, cardno, customer, ordernum) VALUES($1, $2, $3, 'ashvol', 1) RETURNING *", 
+        [cardNum, gratuity, total]);
+
+        response.json(newUser.rows[0]);
+
+    } catch (err) {
+
+        console.error(err.message);
+    }
+
+});
 
 
 app.listen(5000, () => {

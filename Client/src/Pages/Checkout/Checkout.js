@@ -2,11 +2,14 @@ import React, { Fragment, useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import { RegH1 , RegP, RegLabel, RegInput, RegForm, RegText } from "../Register/RegisterElements";
+import { Redirect } from "react-router";
 
 const Checkout = () => {
     const [cardNo, setCardNo] = useState("");
     const [gratuity, setGratuity] = useState("");
     const [isOpen, setIsOpen] = useState(false);
+
+    const [CheckoutComplete, setCheckoutComplete] = useState(false);
 
     const toggle = () => {
 
@@ -17,6 +20,8 @@ const Checkout = () => {
     const handleSubmit = async e => {
         
         e.preventDefault();
+//ADD THIS BELOW
+        setCheckoutComplete(true);
 
         try{
 
@@ -56,58 +61,63 @@ const Checkout = () => {
         }
     };
 
+    useEffect(() => {
+        getTotal();
+    });
 
 
-    return (
-        <div>
-            <Navbar toggle={toggle}/>
-            <Sidebar isOpen={isOpen} toggle={toggle} />
-            
-            <Fragment>
-
-                    <RegH1>Done Shopping? Checkout now!</RegH1>
-                    <RegP>Fill in the information below to place your order!</RegP>
-
-                    <RegText>
-                        <getTotal/>
-                        Total:  {total}
-
-                        
-                    </RegText>
-
-                    <RegForm onSubmit={handleSubmit}>
-
-                    <RegLabel>
-                        Enter card number:
-                        <RegInput
-                        name="Card Number"
-                        type="text"
-                        username={cardNo}
-                        onChange={e => setCardNo(e.target.value)}
-                        />
-                    </RegLabel>
-
-                    <RegLabel>
-                        Enter gratuity:
-                        <RegInput
-                        name="Gratuity"
-                        type="text"
-                        password={gratuity}
-                        onChange={e => setGratuity(e.target.value)}
-                        />
-                    </RegLabel>
-
-
-
-
-                    <RegLabel />
-                    <RegInput type="submit" value="Submit" />
-
-                    </RegForm>
+    if (!CheckoutComplete) {
+        return (
+            <div>
+                <Navbar toggle={toggle}/>
+                <Sidebar isOpen={isOpen} toggle={toggle} />
                 
-            </Fragment>
-        </div>
-    );
-};
+                <Fragment>
+    
+                        <RegH1>Done Shopping? Checkout now!</RegH1>
+                        <RegP>Fill in the information below to place your order!</RegP>
+    
+                        <RegText>
+                            <getTotal/>
+                            Total:  {total}
+    
+                            
+                        </RegText>
+    
+                        <RegForm onSubmit={handleSubmit}>
+    
+                        <RegLabel>
+                            Enter card number:
+                            <RegInput
+                            name="Card Number"
+                            type="text"
+                            username={cardNo}
+                            onChange={e => setCardNo(e.target.value)}
+                            />
+                        </RegLabel>
+    
+                        <RegLabel>
+                            Enter gratuity:
+                            <RegInput
+                            name="Gratuity"
+                            type="text"
+                            password={gratuity}
+                            onChange={e => setGratuity(e.target.value)}
+                            />
+                        </RegLabel>
+    
+    
+                        <RegLabel />
+                        <RegInput type="submit" value="Submit" />
+    
+                        </RegForm>
+                    
+                </Fragment>
+            </div>
+        );} else {
+            return(<Redirect to="/ConfirmationPage"/>)
+    
+        }
+    };
 
 export default Checkout;

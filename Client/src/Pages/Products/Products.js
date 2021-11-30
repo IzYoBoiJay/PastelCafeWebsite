@@ -15,21 +15,20 @@ const Products = () => {
   
     }
 
-    const[foodId, setFoodId] = useState(1);
 
 
-
-    const cart = async () => {
+    const cart = async (foodID, foodName) => {
 
 
         try {
 
         alert(
             "Your thing: " +
-            foodId
+            foodID
+            + "\nFood: " + foodName
         );
 
-        const body = {foodId};
+        const body = {foodID};
 
         const response = await fetch("http://localhost:5000/Menu", {
 
@@ -40,8 +39,6 @@ const Products = () => {
         });
 
         console.log(response);
-
-        setFoodId(1);
       
     } catch (error) {
 
@@ -76,8 +73,7 @@ const Products = () => {
                                 <ProductPrice>{product.price}</ProductPrice>
 
                                 <ProductBtn onClick= {() =>{
-                                    setFoodId(index + 1);
-                                    cart();
+                                    cart(index, product.name);
                                     }}>
                                         {product.btn}
                                     

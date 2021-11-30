@@ -98,9 +98,9 @@ app.post("/Menu", async(request, response) => {
 
     try {
 
-        const {item} = request.body;
+        const {foodID} = request.body;
 
-        const newItem = await pool.query("INSERT INTO orderContainsItems (orderNum, foodId) VALUES(1, ($1 + 1)) RETURNING *",[item]);
+        const newItem = await pool.query("INSERT INTO orderContainsItems (orderNum, foodId) VALUES(1, $1) RETURNING *", [foodID]);
 
         response.json(newItem.rows[0]);
 
@@ -137,7 +137,8 @@ app.post("/OrderNow", async(request, response) => {
 
     try {
 
-        const createTicket = await pool.query("INSERT INTO Ticket (customer, ifComplete) VALUES('ashvol', false) RETURNING *");
+        const {user} = request.body;
+        const createTicket = await pool.query("INSERT INTO Ticket (customer, ifComplete) VALUES($1, false) RETURNING *", [user]);
 
         response.json(createTicket.rows[0]);
 
@@ -149,11 +150,11 @@ app.post("/OrderNow", async(request, response) => {
 })
 
 
-app.delete("/deleteOrder", async(request, response) => {
+app.post("/deleteOrder", async(request, response) => {
 
     try {
         const deleteItems = await pool.query("DELETE FROM OrderContainsItems WHERE orderNum = 1");
-        response.json("Order was cancelled");
+        response.json(deleteItems);
     } catch (err) {
         console.error(err.message);
     }

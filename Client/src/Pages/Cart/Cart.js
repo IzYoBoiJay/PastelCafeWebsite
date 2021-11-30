@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-import { CartBtn, CartH1 } from "./CartElements";
+import { CartBtnRoute, CartH1, CartBtn } from "./CartElements";
 
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
@@ -55,16 +55,42 @@ const Cart = () => {
         getTotal();
     });
 
-
+/*
     const cancel = async () => {
         try {
-            const deleteOrder = await fetch(`http://localhost:5000/deleteOrder`, {
+            const deleteOrder = await fetch(`http://localhost:5000/deleteOrder/`, {
                 method: "DELETE"
             });
         } catch (err) {
             console.error(err.message);
         }
     };
+*/
+
+//NEW CANCEL
+const cancel = async () => {
+
+
+    try {
+
+    alert("IFNHESIOF")
+
+    const response = await fetch("http://localhost:5000/deleteOrder", {
+
+        method: "POST",
+        headers: { "Content-Type": "application/json"}
+
+    });
+
+    console.log(response);
+  
+} catch (error) {
+
+  console.log(error.message);
+  
+}
+
+}
 
 
 
@@ -101,17 +127,18 @@ const Cart = () => {
             </tr>
             </tbody>
         </table></Fragment>
-        <CartBtn to = "Checkout">
+        <CartBtnRoute to = "Checkout">
                  Checkout
-        </CartBtn>
+        </CartBtnRoute>
 
-        <CartBtn onclick= {() =>{
-                cancel();
-                 }} to = "CancelOrder">
+
+        <CartBtn onclick= {cancel}>
                  Cancel Order
         </CartBtn>
 
+
       </div>
+
     );
 };
 

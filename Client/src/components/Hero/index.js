@@ -9,7 +9,7 @@ import useToken from '../App/useToken'
 
 const Hero = () => {
 
-    const { token, setToken} = useToken();
+    const { token } = useToken();
 
     const [isOpen, setIsOpen] = useState(false)
 
@@ -22,13 +22,18 @@ const Hero = () => {
 
     const makeTicket = async () => {
 
+        alert("test");
+
 
         try{
 
-            const response = await fetch(`http://localhost:5000/OrderNow/${token.username}`, {
+            const body = {user: token.username};
+
+            const response = await fetch(`http://localhost:5000/OrderNow/`, {
     
             method: "POST",
-            headers: { "Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body)
     
             });
     
@@ -41,10 +46,6 @@ const Hero = () => {
         }
 
     }
-
-    useEffect(() => {
-        makeTicket();
-    });
 
     return (
         <HeroContainer>

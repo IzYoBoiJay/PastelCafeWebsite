@@ -32,7 +32,7 @@ function App() {
 
             <Route exact path="/Register" component={Register}/>
             <Route exact path="/Login" render={ () => <Login setToken={setToken} />} />
-            <Redirect to="/Login"/>
+            <Redirect to="/Register"/>
 
           </Switch>
 

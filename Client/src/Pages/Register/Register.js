@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { RegH1, RegP, RegLabel, RegInput, RegForm } from "./RegisterElements";
+import { RegH1, RegP, RegLabel, RegInput, RegForm, RegBtn } from "./RegisterElements";
 
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
@@ -59,7 +59,7 @@ const Register = () => {
       <div>
 
         <Navbar toggle={toggle}/>
-        <Sidebar isOpen={isOpen} toggle={toggle} />
+
 
         <RegH1>Register to become part of the Mochas</RegH1>
         <RegP>Fill in the form to create an account.</RegP>
@@ -128,6 +128,12 @@ const Register = () => {
           <RegLabel />
           <RegInput type="submit" value="Submit" />
         </RegForm>
+
+        <a href = "/Login">
+        <RegBtn>
+          Login
+        </RegBtn>
+        </a>
       </div>
     );
 }

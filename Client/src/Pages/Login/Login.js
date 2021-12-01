@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useState } from "react";
-import { RegH1, RegP, RegLabel, RegInput, RegForm } from "./LoginElements";
+import { RegH1, RegP, RegLabel, RegInput, RegForm, RegBtn } from "./LoginElements";
 
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
@@ -109,7 +109,6 @@ export default function Login ( {setToken} ){
       <div>
         
         <Navbar toggle={toggle}/>
-        <Sidebar isOpen={isOpen} toggle={toggle} />
 
         <RegH1>Welcome back Mocha!</RegH1>
         <RegP>Fill in the form to login.</RegP>
@@ -140,6 +139,13 @@ export default function Login ( {setToken} ){
           <RegInput type="submit" value="Submit" />
 
         </RegForm>
+
+        <a href = "/Register">
+        <RegBtn>
+          Register
+        </RegBtn>
+        </a>
+
       </div>
     );
 }

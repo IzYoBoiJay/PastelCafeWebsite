@@ -73,14 +73,14 @@ const cancel = async () => {
 
     try {
 
-    alert("IFNHESIOF")
-
     const response = await fetch("http://localhost:5000/deleteOrder", {
 
         method: "POST",
         headers: { "Content-Type": "application/json"}
 
     });
+
+    alert("Order successfully cancelled.");
 
     console.log(response);
   
@@ -132,9 +132,11 @@ const cancel = async () => {
         </CartBtnRoute>
 
 
-        <CartBtn onclick= {cancel}>
-                 Cancel Order
-        </CartBtn>
+        <a onClick={cancel} href="/">
+            <CartBtn >
+                Cancel Order
+            </CartBtn>
+        </a>
 
 
       </div>

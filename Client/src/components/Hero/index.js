@@ -54,7 +54,7 @@ const Hero = () => {
 
                 <HeroItems>
 
-                    <HeroH1>Welcome back {token.username} </HeroH1>
+                    <h1>Welcome back, {token.username} </h1>
 
                     <HeroH1>
                         Mo Espresso, Less Depresso

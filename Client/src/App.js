@@ -15,7 +15,12 @@ import Checkout from "./Pages/Checkout/Checkout";
 import ConfirmationPage from "./Pages/ConfirmationPage/ConfirmationPage";
 import CancelOrder from './Pages/CancelOrder/CancelOrder';
 
+
+//Token
 import useToken from "./components/App/useToken";
+
+//Global Style
+import { GlobalStyle } from "./globalStyles";
 
 
 
@@ -26,7 +31,11 @@ function App() {
   if(!token) {
 
     return (
+
+      
       <Router>
+
+          <GlobalStyle />
 
           <Switch>
 
@@ -43,6 +52,8 @@ function App() {
 
   return (
     <Router>
+
+      <GlobalStyle />
 
       <Switch>
 

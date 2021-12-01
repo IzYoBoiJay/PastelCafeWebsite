@@ -1,36 +1,48 @@
-import React from "react"
-import {SidebarContainer, Icon, CloseIcon, SidebarMenu, SidebarLink, SidebarRoute, SideBtnWrap} from "./SidebarElements"
+import React from "react";
+import {
+  SidebarContainer,
+  Icon,
+  CloseIcon,
+  SidebarMenu,
+  SidebarLink,
+  SidebarRoute,
+  SideBtnWrap,
+  SidebarBtn
+} from "./SidebarElements";
 
+import deleteToken from "../App/deleteToken";
 
-const Sidebar = ({isOpen, toggle}) => {
-    return (
-        <div>
-            <SidebarContainer isOpen={isOpen} onClick={toggle}>
+const Sidebar = ({ isOpen, toggle }) => {
 
-                <Icon onClick={toggle}>
+  return (
+    <div>
+      <SidebarContainer isOpen={isOpen} onClick={toggle}>
 
-                    <CloseIcon/>
+        <Icon onClick={toggle}>
+          <CloseIcon />
+        </Icon>
 
-                </Icon>
+        <SidebarMenu>
 
-                <SidebarMenu>
+          <SidebarLink to="/Menu">Menu</SidebarLink>
 
-                    <SidebarLink to="/Menu">
-                        Menu
-                    </SidebarLink>
+          <SidebarLink to="/Cart">Cart</SidebarLink>
 
-                    <SidebarLink to="/Cart">
-                        Cart
-                    </SidebarLink>
+        <a href="/Login">
+            <SidebarBtn onClick={ deleteToken }>Logout</SidebarBtn>
+        </a>
 
-                </SidebarMenu>
+        </SidebarMenu>
 
-                    <SidebarLink to="/Checkout">
-                        Checkout
-                    </SidebarLink>
-                    
-            </SidebarContainer>
-        </div>
-    )
-}
+        <SideBtnWrap>
+
+          <SidebarRoute to="/Checkout">Checkout</SidebarRoute>
+
+        </SideBtnWrap>
+
+      </SidebarContainer>
+    </div>
+  );
+
+};
 export default Sidebar;

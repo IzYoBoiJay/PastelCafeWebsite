@@ -129,7 +129,7 @@ export default function Login ( {setToken} ){
           </RegLabel>
 
           <RegLabel />
-          <RegInput type="submit" value="           Submit" />
+          <RegInput type="submit" value="        Submit" />
 
         </RegForm>
 

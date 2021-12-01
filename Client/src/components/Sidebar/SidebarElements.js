@@ -67,6 +67,7 @@ export const SidebarLink = styled(Link)`
     list-style: none;
     transition: 0.2s ease-in-out;
     text-decoration: none;
+    margin-bottom: 1.5em;
     color: #000;
     cursor: pointer;
 
@@ -81,17 +82,16 @@ export const SidebarLink = styled(Link)`
 
 export const SidebarBtn = styled.button`
 
-    display: flex;
+    display: flex-inline;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     text-decoration: none;
-    list-style: none;
     transition: 0.2s ease-in-out;
-    text-decoration: none;
     color: #000;
     cursor: pointer;
-    background: transparent;
+    border: none;
+    background: none;
 
     &:hover {
 

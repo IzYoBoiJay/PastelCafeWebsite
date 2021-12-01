@@ -55,13 +55,6 @@ export default function Login ( {setToken} ){
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isOpen, setIsOpen] = useState(false)
-
-  const toggle = () => {
-
-      setIsOpen(!isOpen)
-
-  }
 
 
   const handleSubmit = async e => {
@@ -108,7 +101,7 @@ export default function Login ( {setToken} ){
     return (
       <div>
         
-        <Navbar toggle={toggle}/>
+        <Navbar/>
 
         <RegH1>Welcome back Mocha!</RegH1>
         <RegP>Fill in the form to login.</RegP>
@@ -139,6 +132,10 @@ export default function Login ( {setToken} ){
           <RegInput type="submit" value="Submit" />
 
         </RegForm>
+
+        <RegP className = "mt-5">
+          Not a member yet? Register now!
+        </RegP>
 
         <a href = "/Register">
         <RegBtn>

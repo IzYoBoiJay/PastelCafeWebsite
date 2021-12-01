@@ -53,15 +53,14 @@ export const RegLabel = styled.label`
 {/*to clean up*/}
 export const RegInput = styled.input`
 
-    width: 10em;
+    width: 15em;
     display: flex;
     flex-direction: column;
+    text-align: right;
     position: relative;
     padding: 15px 10px 15px 42px;
     border-radius: 1.1em;
-    text-align: left;
-    margin: auto
-
+    margin: auto;
 
 `;
 

@@ -13,14 +13,6 @@ const Register = () => {
   const [fname, setfName] = useState("");
   const [lname, setlName] = useState("");
 
-  const [isOpen, setIsOpen] = useState(false)
-
-  const toggle = () => {
-
-      setIsOpen(!isOpen)
-
-  }
-
   const handleSubmit = async e => {
 
     e.preventDefault();
@@ -58,7 +50,7 @@ const Register = () => {
     return (
       <div>
 
-        <Navbar toggle={toggle}/>
+        <Navbar/>
 
 
         <RegH1>Register to become part of the Mochas</RegH1>
@@ -126,8 +118,12 @@ const Register = () => {
           </RegLabel>
 
           <RegLabel />
-          <RegInput type="submit" value="Submit" />
+          <RegInput type="submit" value="           Submit" />
         </RegForm>
+
+        <RegP className = "mt-5">
+          Already a member? Login now!
+        </RegP>
 
         <a href = "/Login">
         <RegBtn>

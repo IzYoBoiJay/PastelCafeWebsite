@@ -122,7 +122,7 @@ export default function Login ( {setToken} ){
             Enter a password:
             <RegInput
               name="password"
-              type="text"
+              type="password"
               password={password}
               onChange={e => setPassword(e.target.value)}
             />

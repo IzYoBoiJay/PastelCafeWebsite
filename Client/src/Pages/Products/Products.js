@@ -5,6 +5,8 @@ import products, { productItem } from "./data"
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 
+import { currentOrderID } from "../../components/Hero";
+
 const Products = () => {
 
     const [isOpen, setIsOpen] = useState(false)
@@ -28,7 +30,7 @@ const Products = () => {
             + "\nFood: " + foodName
         );
 
-        const body = {foodID};
+        const body = {currentOrderID, foodID};
 
         const response = await fetch("http://localhost:5000/Menu", {
 

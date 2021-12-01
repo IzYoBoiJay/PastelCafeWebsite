@@ -98,9 +98,9 @@ app.post("/Menu", async(request, response) => {
 
     try {
 
-        const {foodID} = request.body;
+        const {orderNum, foodID} = request.body;
 
-        const newItem = await pool.query("INSERT INTO orderContainsItems (orderNum, foodId) VALUES(1, $1) RETURNING *", [foodID]);
+        const newItem = await pool.query("INSERT INTO orderContainsItems (orderNum, foodId) VALUES($1, $2) RETURNING *", [orderNum, foodID]);
 
         response.json(newItem.rows[0]);
 
@@ -153,7 +153,8 @@ app.post("/OrderNow", async(request, response) => {
 app.post("/deleteOrder", async(request, response) => {
 
     try {
-        const deleteItems = await pool.query("DELETE FROM OrderContainsItems WHERE orderNum = 1");
+        const {orderId} = request.body;
+        const deleteItems = await pool.query("DELETE FROM OrderContainsItems WHERE orderNum = $1", [orderId]);
         response.json(deleteItems);
     } catch (err) {
         console.error(err.message);
@@ -161,6 +162,19 @@ app.post("/deleteOrder", async(request, response) => {
 
 })
 
+app.use("/checkTicket", async(request, response) => {
+
+    try {
+        const {orderId} = request.body;
+
+        const checkIfEmpty = await pool.query("SELECT EXISTS (SELECT * FROM ticket WHERE orderNum = $1 AND ifComplete = false)", [orderId]);
+        response.json(checkIfEmpty.rows[0].exists);
+
+    } catch (err) {
+        console.error(err.message);
+    }
+
+})
 
 app.listen(5000, () => {
 

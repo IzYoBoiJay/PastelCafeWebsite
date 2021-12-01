@@ -61,7 +61,7 @@ const Checkout = () => {
             
             console.log(jsonData);
             
-            setTotal(jsonData);
+            setTotal(jsonData.toFixed(2));
 
         } catch (err) {
             console.error(err.message);

@@ -43,7 +43,7 @@ const Cart = () => {
             const response = await fetch(`http://localhost:5000/total`);
             const jsonData = await response.json();
             
-            setTotal(jsonData);
+            setTotal(jsonData.toFixed(2));
 
             console.log(jsonData)
         } catch (err) {

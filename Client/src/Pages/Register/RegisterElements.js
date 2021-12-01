@@ -56,7 +56,7 @@ export const RegInput = styled.input`
     width: 15em;
     display: flex;
     flex-direction: column;
-    text-align: right;
+    text-align: left;
     position: relative;
     padding: 15px 10px 15px 42px;
     border-radius: 1.1em;

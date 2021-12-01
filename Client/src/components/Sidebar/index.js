@@ -14,6 +14,13 @@ import deleteToken from "../App/deleteToken";
 
 const Sidebar = ({ isOpen, toggle }) => {
 
+  function logout() {
+
+    alert("You have logged out successfully.");
+    deleteToken();
+
+  }
+
   return (
     <div>
       <SidebarContainer isOpen={isOpen} onClick={toggle}>
@@ -28,8 +35,8 @@ const Sidebar = ({ isOpen, toggle }) => {
 
           <SidebarLink to="/Cart">Cart</SidebarLink>
 
-        <a href="/Login">
-            <SidebarBtn onClick={ deleteToken }>Logout</SidebarBtn>
+        <a  onClick={ logout } href="/Login">
+            <SidebarBtn>Logout</SidebarBtn>
         </a>
 
         </SidebarMenu>

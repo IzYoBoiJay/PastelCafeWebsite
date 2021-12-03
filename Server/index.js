@@ -15,8 +15,7 @@ app.use(express.json()) //request.body
 
 /*Routes*/
 
-//Create user information app.post() to add data
-//async provides await
+// Query for inserting info from register page to database
 app.post("/Register", async(request, response) => {
 
     try {
@@ -31,10 +30,12 @@ app.post("/Register", async(request, response) => {
     } catch (err) {
 
         console.error(err.message);
+    
     }
 
 });
 
+// Query that returns a boolean if user info is validated
 app.use('/LoginValidate', async(request, response) => {
 
     try {
@@ -55,14 +56,15 @@ app.use('/LoginValidate', async(request, response) => {
 
 });
 
+
 app.use('/LoginSuccess', (request, response) => {
     response.send({
       token: request.body
     });
-  });
+});
 
-
-  app.get("/Cart", async(request, response) => {
+// Query that returns menu items in users cart
+app.get("/Cart", async(request, response) => {
   
     try {
         response.set('Access-Control-Allow-Origin', '*');
@@ -77,6 +79,7 @@ app.use('/LoginSuccess', (request, response) => {
 
 })
 
+// Query that returns users total in their cart
 app.get("/total", async(request, response) => {
 
     try {
@@ -94,6 +97,7 @@ app.get("/total", async(request, response) => {
 
 })
 
+// Inserts item user adds to their cart
 app.post("/Menu", async(request, response) => {
 
     try {
@@ -112,7 +116,7 @@ app.post("/Menu", async(request, response) => {
 
 })
 
-
+// Query that inserts into transaction table with users info
 app.post("/Checkout/:user", async(request, response) => {
 
     try {
@@ -132,7 +136,7 @@ app.post("/Checkout/:user", async(request, response) => {
 
 });
 
-
+// Query that creates a ticket
 app.post("/OrderNow", async(request, response) => {
 
     try {
@@ -149,7 +153,7 @@ app.post("/OrderNow", async(request, response) => {
 
 })
 
-
+// Query that deletes order
 app.post("/deleteOrder", async(request, response) => {
 
     try {

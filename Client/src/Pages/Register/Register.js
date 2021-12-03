@@ -1,8 +1,8 @@
-import React, { Fragment, useState } from "react";
+// Register page implementation
+import React, { useState } from "react";
 import { RegH1, RegP, RegLabel, RegInput, RegForm, RegBtn } from "./RegisterElements";
 
 import Navbar from "../../components/Navbar";
-import Sidebar from "../../components/Sidebar";
 
 const Register = () => {
 
@@ -43,15 +43,12 @@ const Register = () => {
       console.log(error.message);
       
     }
-
   }
-
 
     return (
       <div>
 
         <Navbar/>
-
 
         <RegH1>Register to become part of the Mochas</RegH1>
         <RegP>Fill in the form to create an account.</RegP>

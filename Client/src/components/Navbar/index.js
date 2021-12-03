@@ -1,3 +1,4 @@
+// Navbar implementation
 import React from 'react'
 import { Bars, Nav, NavIcon, NavLink } from './NavbarElements'
 

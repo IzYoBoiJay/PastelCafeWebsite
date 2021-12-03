@@ -1,11 +1,10 @@
+// menu items data
 import pokemonEspresso from "../../images/espresso.jpg";
 import icedMocha from "../../images/mocha.jpg";
 import Cheese from "../../images/jcheesecake.jpg";
 import cake from "../../images/cake.jpg";
 import cookie from "../../images/cookie.jpg";
 import icedlatte from "../../images/icedlatte.jpg";
-
-
 
 export const productItem = [
     {

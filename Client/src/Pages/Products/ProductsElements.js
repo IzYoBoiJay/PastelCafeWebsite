@@ -1,3 +1,4 @@
+// menu page css elements
 import styled from "styled-components";
 
 export const ProductsContainer = styled.div`

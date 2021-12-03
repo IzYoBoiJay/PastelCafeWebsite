@@ -1,9 +1,9 @@
+// Cart page implementation
 import React, { Fragment, useState, useEffect } from "react";
 import { CartBtnRoute, CartH1, CartBtn } from "./CartElements";
 
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
-
 import useToken from "../../components/App/useToken";
 
 const Cart = () => {
@@ -55,44 +55,29 @@ const Cart = () => {
         getTotal();
     });
 
-/*
+
     const cancel = async () => {
+
+
         try {
-            const deleteOrder = await fetch(`http://localhost:5000/deleteOrder/`, {
-                method: "DELETE"
-            });
-        } catch (err) {
-            console.error(err.message);
-        }
-    };
-*/
 
-//NEW CANCEL
-const cancel = async () => {
+        const response = await fetch("http://localhost:5000/deleteOrder", {
 
+            method: "POST",
+            headers: { "Content-Type": "application/json"}
 
-    try {
+        });
 
-    const response = await fetch("http://localhost:5000/deleteOrder", {
+        alert("Order successfully cancelled.");
 
-        method: "POST",
-        headers: { "Content-Type": "application/json"}
+        console.log(response);
+    
+    } catch (error) {
 
-    });
-
-    alert("Order successfully cancelled.");
-
-    console.log(response);
-  
-} catch (error) {
-
-  console.log(error.message);
-  
+        console.log(error.message);
+    
+    }
 }
-
-}
-
-
 
     return ( 
         <div>
@@ -101,7 +86,6 @@ const cancel = async () => {
         <Sidebar isOpen={isOpen} toggle={toggle} />
 
             <CartH1> Your Cart </CartH1>
-
 
             <Fragment>  
             <table class="table table-striped">
@@ -131,13 +115,11 @@ const cancel = async () => {
                  Checkout
         </CartBtnRoute>
 
-
         <a onClick={cancel} href="/">
             <CartBtn >
                 Cancel Order
             </CartBtn>
         </a>
-
 
       </div>
 

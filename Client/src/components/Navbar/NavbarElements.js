@@ -1,3 +1,4 @@
+// CSS for navbar components
 import styled from "styled-components";
 import { NavLink as Link } from "react-router-dom";
 import { FiCoffee } from "react-icons/fi";
@@ -19,7 +20,6 @@ export const Nav = styled.nav`
 
 `;
 
-//Menu Bar???
 export const NavLink = styled(Link)`
 
     color: #fff;
@@ -38,7 +38,6 @@ export const NavLink = styled(Link)`
     }
 `;
 
-//Icon???
 export const NavIcon = styled.div`
     
     display: block;

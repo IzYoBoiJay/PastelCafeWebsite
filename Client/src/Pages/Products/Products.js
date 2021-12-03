@@ -1,6 +1,7 @@
+// Menu Page implementation
 import React, {useState, useEffect, ReactDOM} from "react"
 import { ProductsContainer, ProductsHeading, ProductWrapper, ProductDisplay, ProductImage, ProductInfo, ProductName, ProductDescription, ProductPrice, ProductBtn } from "./ProductsElements"
-import products, { productItem } from "./data"
+import products from "./data"
 
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
@@ -15,10 +16,7 @@ const Products = () => {
   
     }
 
-
-
     const cart = async (foodID, foodName) => {
-
 
         try {
 
@@ -47,8 +45,6 @@ const Products = () => {
     }
 
   }
-
-
 
     return (
         <div id = "Product">

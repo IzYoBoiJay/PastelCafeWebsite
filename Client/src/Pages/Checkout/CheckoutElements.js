@@ -1,3 +1,4 @@
+// Checkout css element
 import styled from "styled-components";
 
 export const RegInput = styled.input`

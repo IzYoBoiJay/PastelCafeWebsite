@@ -1,10 +1,10 @@
+// Login page implementation
 import React from "react";
 import PropTypes from "prop-types";
 import { useState } from "react";
 import { RegH1, RegP, RegLabel, RegInput, RegForm, RegBtn } from "./LoginElements";
 
 import Navbar from "../../components/Navbar";
-import Sidebar from "../../components/Sidebar";
 
 var fetchSuccess = false;
 
@@ -39,7 +39,6 @@ async function loginValidate(loginInfo) {
   });
 }
 
-
 async function loginSuccess(loginInfo) {
   return fetch('http://localhost:5000/LoginSuccess', {
     method: 'POST',
@@ -56,14 +55,11 @@ export default function Login ( {setToken} ){
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-
   const handleSubmit = async e => {
 
     e.preventDefault();
 
-
     try {
-
       alert(
           "Your Username: " +
           username +
@@ -87,6 +83,7 @@ export default function Login ( {setToken} ){
       else{
   
         alert("No match for login credentials found");
+
       }
       
     } catch (error) {
@@ -94,9 +91,7 @@ export default function Login ( {setToken} ){
       console.log(error.message);
       
     }
-
   }
-
 
     return (
       <div>

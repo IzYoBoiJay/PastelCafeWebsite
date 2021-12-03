@@ -1,5 +1,6 @@
+// Confirmation page implementation
 import React, { Fragment, useState, useEffect } from "react";
-import { RegH1, RegP, RegLabel, RegInput, RegForm } from "../Register/RegisterElements";
+import { RegH1 } from "../Register/RegisterElements";
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import useToken from "../../components/App/useToken";

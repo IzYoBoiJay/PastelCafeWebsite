@@ -1,10 +1,11 @@
+// Checkout page implementation
 import React, { Fragment, useState, useEffect } from "react";
+import { RegH1 , RegP, RegLabel, RegInput, RegForm, RegText } from "../Register/RegisterElements";
+import { Redirect } from "react-router";
+import useToken from "../../components/App/useToken";
+
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
-import { RegH1 , RegP, RegLabel, RegInput, RegForm, RegText } from "../Register/RegisterElements";
-import useToken from "../../components/App/useToken";
-import { Redirect } from "react-router";
-
 
 
 const Checkout = () => {
@@ -12,16 +13,14 @@ const Checkout = () => {
     const [gratuity, setGratuity] = useState(0.0);
     const [isOpen, setIsOpen] = useState(false);
     const [total, setTotal] = useState(0.0);
-
     const [CheckoutComplete, setCheckoutComplete] = useState(false);
-
+    const { token, setToken} = useToken();
+    
     const toggle = () => {
 
         setIsOpen(!isOpen)
   
     }
-
-    const { token, setToken} = useToken();
 
     const handleSubmit = async e => {
         
@@ -31,8 +30,7 @@ const Checkout = () => {
 
         try{
 
-            const body = {cardNum, gratuity, total};
-            
+            const body = {cardNum, gratuity, total}; 
 
             const response = await fetch(`http://localhost:5000/Checkout/${token.username}`, {
     
@@ -49,10 +47,7 @@ const Checkout = () => {
             console.log(error.message);
             
         }
-
     }
-
-    
 
     const getTotal = async () => {
         try {
@@ -113,7 +108,6 @@ const Checkout = () => {
                             />
                         </RegLabel>
     
-    
                         <RegLabel />
                         <RegInput type="submit" value="Submit" />
     
@@ -122,6 +116,7 @@ const Checkout = () => {
                 </Fragment>
             </div>
         );} else {
+            
             return(<Redirect to="/ConfirmationPage"/>)
     
         }

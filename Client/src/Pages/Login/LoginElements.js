@@ -1,3 +1,4 @@
+// Login css elements
 import styled from "styled-components";
 
 export const RegH1 = styled.h1`
@@ -14,17 +15,7 @@ export const RegP = styled.p`
     font-size: 1.5em;
 
 `;
-{/*
-export const RegForm = styled.form`
 
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-
-`;
-*/}
 
 export const RegForm = styled.form`
 
@@ -37,20 +28,12 @@ export const RegForm = styled.form`
 
 `;
 
-{/*
-export const RegLabel = styled.label`
-    display: flex;
-    flex-direction: column;
-    width: 10em;
-    padding-top: 1em;
-    margin-right: 2em;
-`;
-*/}
+
 export const RegLabel = styled.label`
     padding-top: 1em;
 `;
 
-{/*to clean up*/}
+
 export const RegInput = styled.input`
 
     width: 15em;

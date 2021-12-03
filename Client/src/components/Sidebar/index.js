@@ -1,15 +1,6 @@
+// Sidebar implementation
 import React from "react";
-import {
-  SidebarContainer,
-  Icon,
-  CloseIcon,
-  SidebarMenu,
-  SidebarLink,
-  SidebarRoute,
-  SideBtnWrap,
-  SidebarBtn
-} from "./SidebarElements";
-
+import { SidebarContainer, Icon, CloseIcon, SidebarMenu, SidebarLink, SidebarRoute, SideBtnWrap, SidebarBtn } from "./SidebarElements";
 import deleteToken from "../App/deleteToken";
 
 const Sidebar = ({ isOpen, toggle }) => {
@@ -50,6 +41,6 @@ const Sidebar = ({ isOpen, toggle }) => {
       </SidebarContainer>
     </div>
   );
-
 };
+
 export default Sidebar;

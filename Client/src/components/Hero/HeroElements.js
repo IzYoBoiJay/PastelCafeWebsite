@@ -1,3 +1,4 @@
+//CSS elements for Hero main page
 import styled from "styled-components";
 import imageBackground from "../../images/coffeeanimalart.jpg";
 import { Link } from "react-router-dom";
